@@ -1,0 +1,14 @@
+trigger EmpInsert on Employee__c (before insert) {
+
+	for(Employee__c pass : Trigger.New){
+
+	List<Employee_c> mynew = [SELECT Id, Name FROM Employeec WHERE Employee_Namec =: pass.Employee_Name_c];
+
+		if(mynew.size() > 0){
+
+        	pass.Name.addError('Employee with same name is existing');
+
+     	} 
+
+    }
+}
